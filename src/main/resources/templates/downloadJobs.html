@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Home</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+<script  type="text/javascript"	th:src="@{/js/home.js}"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<table style="width: 80%">
+		<tr>
+			<td />
+			<td><img th:src="@{/images/naukri.jpg}"
+				width="200" height="80"
+				alt="Logo"></td>
+			<td><h1>Naukri Perl Crawler</h1></td>
+			<td />
+		</tr>
+	</table>
+	<nav>
+		<br> <a th:href="@{/niperlcrawler/home}"><h4>
+				<b>Manage Company</b>
+			</h4></a><br> <a th:href="@{/niperlcrawler/searchJobs}"><h4>
+				<b>View/Download Jobs</b>
+			</h4></a><br>
+	</nav>
+	<section>
+		<div class="container">
+
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<form autocomplete="off" action="#" th:action="@{/niperlcrawler/downloadJobs}" 
+						method="post" class="form-horizontal" role="form"
+						onsubmit="return exportF()">
+						<h2>Enter SiteId to view jobs</h2>
+						<div class="form-group">
+							<div class="col-sm-9">
+								<input type="text" placeholder="SiteId" name="siteId" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-9">
+								<button type="submit" class="btn btn-primary btn-block" 
+								>Download Jobs</button>
+							</div>
+						</div>
+					</form>
+					<h2 class="admin-message-text text-center" th:utext="${successMessage}"></h2>
+				</div>
+			</div>
+		</div>
+
+	</section>
+</body>
+</html>

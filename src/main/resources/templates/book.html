@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Home</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+<script  type="text/javascript" th:src="@{/js/home.js}"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+	table td input {
+ width: 100%;   
+}
+</style>
+</head>
+<body>
+	<table style="width: 80%">
+		<tr>
+			<td />
+			<td><img th:src="@{/images/rentbike.jpg}"
+				width="200" height="80"
+				alt="Logo"></td>
+			<!-- <td><h1>Naukri Perl Crawler</h1></td> -->
+			<td />
+		</tr>
+	</table>
+<!-- 	<nav>
+		<br> <a th:href="@{/bookingservice/}"><h4>
+				<b>Manage Company</b>
+			</h4></a><br> <a th:href="@{/niperlcrawler/searchJobs}"><h4>
+				<b>View/Download Jobs</b>
+			</h4></a><br>
+	</nav> -->
+	<section>
+		<div class="container">
+
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+				<!-- <form autocomplete="off" action="#" th:action="@{/bookingservice/book}"
+						method="post" role="form"> -->
+						<textarea rows="4" cols="50" name="configuration" class="form-control" 
+							th:field="${'your booking is confirmed with booking id: '+bookingDetails.id}"></textarea>
+						 <p>Booking details are as below:<br>
+					<table id="table" border="1">
+							<tbody>
+							<tr><td th:text="${'From: '+bookingDetails.fromdate}"/><td th:text="${'To: 'bookingDetails.todate}"/></tr>
+							<tr><td colspan="2" th:text="${'Bike Model: '+bookingDetails.bike.model}" /></tr>
+							
+							<!-- <tr><td th:text="${'Rs. '+(bike.price)*3}" /> -->
+							<!-- <td><input type="submit" name="submit" value="Book" onclick=""/></td></tr> -->
+						</tbody>
+					</table>
+					<!-- </form> -->
+				</div>
+			</div>
+		</div>
+
+	</section>
+</body>
+</html>
