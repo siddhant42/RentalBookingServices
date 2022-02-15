@@ -1,16 +1,14 @@
 package com.rentalbooking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+
 import java.sql.Timestamp;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name="BookingDetails")
 public class BookingDetails {
@@ -27,35 +25,9 @@ public class BookingDetails {
 	@OneToOne
 	@JoinColumn(name ="user_id", nullable = false)
 	private User user;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public Timestamp getFromdate() {
-		return fromdate;
-	}
-	public void setFromdate(Timestamp fromdate) {
-		this.fromdate = fromdate;
-	}
-	public Timestamp getTodate() {
-		return todate;
-	}
-	public void setTodate(Timestamp todate) {
-		this.todate = todate;
-	}
-	public Bike getBike() {
-		return bike;
-	}
-	public void setBike(Bike bike) {
-		this.bike = bike;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
+
+	@OneToMany(mappedBy="bookingDetails")
+	@JsonIgnore
+	private List<Booking> bookingList;
 	
 }
