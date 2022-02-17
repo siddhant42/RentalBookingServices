@@ -7,6 +7,7 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import com.rentalbooking.model.Booking;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,7 +54,7 @@ public class BikeBookingController {
 			@RequestParam(value = "todate", required = false)String todate, Bike bike) {
 		LocalDate from = LocalDate.parse(fromdate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		LocalDate to = LocalDate.parse(todate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		BookingDetails bookingDetails =  bookingService.bookBike(from, to, bike);
+		List<Booking> bookingDetails =  bookingService.bookBike(from, to, bike);
 		ModelAndView modelAndView = new ModelAndView();
 	    modelAndView.addObject("bookingDetails", bookingDetails);
 	    modelAndView.setViewName("book");

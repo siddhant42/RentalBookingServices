@@ -33,7 +33,7 @@ public class BikeBookingService implements BookingService {
 
 	@Override
 	public List<Booking> bookBike(LocalDate from, LocalDate to, Bike bike) {
-		final List<Booking> availBookings = bookingRepo.getBikes(from,to,bike.getId());
+		final List<Booking> availBookings = bookingRepo.getAvailBookings(from,to,bike.getId());
 		final int requiredCount = (int)DAYS.between(from, to);
 		if(availBookings.size()<requiredCount) throw new RuntimeException("Bike not available");
 		return availBookings;

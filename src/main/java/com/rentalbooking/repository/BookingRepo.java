@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface BookingRepo extends JpaRepository<Booking, Integer> {
     @Query(value="select * from Booking where status='AVAILABLE' and date between ?1 and ?2 and bike_id=?3", nativeQuery=true)
-    List<Booking> getBookings(LocalDate from, LocalDate to, int bikeId);
+    List<Booking> getAvailBookings(LocalDate from, LocalDate to, int bikeId);
 
     @Query(value="update Booking set status='BOOKED' and bookings in ('?1')", nativeQuery=true)
     int updateBookings(String bookings);
