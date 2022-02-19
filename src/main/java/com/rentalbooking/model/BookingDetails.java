@@ -19,6 +19,8 @@ public class BookingDetails {
 	private Timestamp fromdate;
 	@Column(name="todate",nullable=false)
 	private Timestamp todate;
+	@Column(name="totalprice")
+	private int price;
 	@OneToOne
 	@JoinColumn(name ="bike_id", nullable = false)
 	private Bike bike;

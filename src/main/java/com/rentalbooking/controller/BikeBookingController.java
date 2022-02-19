@@ -21,7 +21,7 @@ import com.rentalbooking.service.BookingService;
 
 @Controller
 @RequestMapping(value="/bookingservice")
-public class BikeBookingController {
+public class BikeBookingController implements BookingController {
 	@Autowired
 	BookingService bookingService;
 	
@@ -32,36 +32,39 @@ public class BikeBookingController {
         return modelAndView;
 	}
 
-//	@Override
+	@Override
 	@RequestMapping(value="/bikes", method=RequestMethod.POST)
-	public ModelAndView showBikes(String fromdate, String todate,String city) {
-		LocalDate from = LocalDate.parse(fromdate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		LocalDate to = LocalDate.parse(todate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		List<Bike> bikes = bookingService.showBikes(from, to, city);
+	public ModelAndView showAvailBikes(String fromdate, String todate,String city) {
+		LocalDateTime from = LocalDateTime.parse(fromdate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		LocalDateTime to = LocalDateTime.parse(todate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		List<BookingDetails> bookingDetailsList = bookingService.showAvailBikes(from, to, city);
 		ModelAndView modelAndView = new ModelAndView();
-	    modelAndView.addObject("bikes", bikes);
-	    modelAndView.addObject("fromdate", fromdate);
-	    modelAndView.addObject("todate", todate);
-	    Period period = Period.between(from, to);
-	    modelAndView.addObject("numOfDays", period.getDays());
+	    modelAndView.addObject("bookingDetailsList", bookingDetailsList);
 	    modelAndView.setViewName("bikesview");
         return modelAndView;
 	}
 
-//	@Override
+	@Override
 	@RequestMapping(value="book", method=RequestMethod.POST)
-	public ModelAndView bookBike(@RequestParam(value = "fromdate", required = false) String fromdate,
-			@RequestParam(value = "todate", required = false)String todate, Bike bike) {
-		LocalDate from = LocalDate.parse(fromdate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		LocalDate to = LocalDate.parse(todate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		List<Booking> bookingDetails =  bookingService.bookBike(from, to, bike);
+	public ModelAndView bookBike(BookingDetails bookingDetails) {
+		bookingService.bookBike(bookingDetails);
 		ModelAndView modelAndView = new ModelAndView();
 	    modelAndView.addObject("bookingDetails", bookingDetails);
-	    modelAndView.setViewName("book");
+	    modelAndView.setViewName("pay");
         return modelAndView;
 	}
+	@Override
+	@RequestMapping(value="confirm", method=RequestMethod.POST)
+	public ModelAndView confirmBooking(BookingDetails bookingDetails) {
+		ModelAndView modelAndView = new ModelAndView();
+		bookingService.createBooking(bookingDetails);
+		modelAndView.addObject("bookingDetails",bookingDetails);
+		modelAndView.setViewName("book");
+		return modelAndView;
+	}
 
-//	@Override
+
+	@Override
 	@RequestMapping(value="cancel", method=RequestMethod.PUT)
 	public ModelAndView cancelBooking(BookingDetails bookingDetails) {
 		boolean isCancelled =  bookingService.cancelBooking(bookingDetails);
