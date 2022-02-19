@@ -19,7 +19,6 @@
 			<td><img th:src="@{/images/rentbike.jpg}"
 				width="200" height="80"
 				alt="Logo"></td>
-			<!-- <td><h1>Naukri Perl Crawler</h1></td> -->
 			<td />
 		</tr>
 	</table>
@@ -37,12 +36,6 @@
 				<div class="col-md-6 col-md-offset-3">
 					<form autocomplete="off" action="#" th:action="@{/bookingservice/bikes}"
 						method="post" class="form-horizontal" role="form">
-						<!-- <h2>Enter SiteId to get details</h2>
-						<div class="form-group">
-							<div class="col-sm-9">
-								<input type="text" placeholder="SiteId" name="siteId" class="form-control" />
-							</div>
-						</div> -->
 						From:<input name="fromdate" type="date"/><br>
 						To:<input name="todate" type="date"/><br>
 						City:<select name="city">
@@ -57,7 +50,7 @@
 							</div>
 						</div>
 					</form>
-					<h2 class="admin-message-text text-center" th:utext="${successMessage}"></h2>
+<!--					<h2 class="admin-message-text text-center" th:utext="${successMessage}"></h2>-->
 				</div>
 			</div>
 		</div>

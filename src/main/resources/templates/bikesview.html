@@ -43,13 +43,13 @@
 				<form autocomplete="off" action="#" th:action="@{/bookingservice/book}"
 						method="post" role="form">
 					<table id="table" border="1">
-							<tbody th:each="bike,iterStat : ${bikes}">
-							<tr><td colspan="2"><img th:src="@{${bike.imageurl}}" height='300' width='500'></td></tr>
-							<tr><td colspan="2" th:text="${'Providor: '+bike.vendor.name}"/></tr>
-							<tr><td colspan="2" th:text="${'Model: '+bike.model}" /></tr>
-							<tr><td th:text="${fromdate}" th:name="fromdate"/><td th:text="${todate}" th:name="todate"/></tr>
-							<tr><td th:text="${'Rs. '+(bike.price)*3}" />
-							<td><input type="submit" name="submit" value="Book" onclick=""/></td></tr>
+							<tbody th:each="bookingDetails,iterStat : ${bookingDetailsList}">
+							<tr><td colspan="2"><img th:src="@{${bookingDetails.bike.imageurl}}" height='300' width='500'></td></tr>
+<!--							<tr><td colspan="2" th:text="${'Providor: '+bike.vendor.name}"/></tr>-->
+							<tr><td colspan="2" th:text="${'Model: '+bookingDetails.bike.model}" /></tr>
+							<tr><td th:text="${bookingDetails.fromdate}" th:name="fromdate"/><td th:text="${bookingDetails.todate}" th:name="todate"/></tr>
+							<tr><td th:text="${'Rs. '+(bookingDetails.price)}" />
+							<td><input type="submit" name="submit" value="bookingDetails" onclick=""/></td></tr>
 						</tbody>
 					</table>
 					</form>

@@ -50,16 +50,16 @@ public class BikeBookingController implements BookingController {
 		bookingService.bookBike(bookingDetails);
 		ModelAndView modelAndView = new ModelAndView();
 	    modelAndView.addObject("bookingDetails", bookingDetails);
-	    modelAndView.setViewName("pay");
+	    modelAndView.setViewName("payment");
         return modelAndView;
 	}
 	@Override
-	@RequestMapping(value="confirm", method=RequestMethod.POST)
+	@RequestMapping(value="confirmbooking", method=RequestMethod.POST)
 	public ModelAndView confirmBooking(BookingDetails bookingDetails) {
 		ModelAndView modelAndView = new ModelAndView();
 		bookingService.createBooking(bookingDetails);
 		modelAndView.addObject("bookingDetails",bookingDetails);
-		modelAndView.setViewName("book");
+		modelAndView.setViewName("booked");
 		return modelAndView;
 	}
 
